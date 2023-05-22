@@ -1,0 +1,21 @@
+const app = require('../app');
+const http = require('http');
+const https = require('https');
+
+
+const {
+  ssl: { cert, key },
+  port
+} = require(`../environments/env.${process.env.NODE_ENV}`);
+
+http
+.createServer((req, res) => {
+    const redirectUrl = `https://${req.headers.host.split(':')[0]}:${port.https}${req.url}`;
+    res.writeHead(301, { Location: redirectUrl });
+    res.end();
+  })
+  .listen(port.http, () => console.log(`Listening on port ${port.http}`));
+
+https
+  .createServer({ cert, key }, app)
+  .listen(port.https, () => console.log(`Listening on port ${port.https}`));
