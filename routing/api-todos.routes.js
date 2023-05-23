@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getTodos } = require('../controllers/api-todo.controller');
+// const { getTodos, createTodo, updateTodo, deleteTodo } = require('../controllers/api-todo.controller');
 const apiTodoController = require('../controllers/api-todo.controller');
 const { resolve } = require('path');
 
